@@ -1,0 +1,56 @@
+backend:
+  name: github
+  repo: TVUJ-GITHUB/nefritart
+  branch: main
+  # TODO (Fáze 5.5): nahradit URL nasazeného OAuth Workeru, BEZ /callback na konci
+  base_url: https://DOPLNIT-URL-WORKERU.workers.dev
+
+media_folder: /public/images/products
+public_folder: /images/products
+
+locale: cs
+
+collections:
+  - name: products
+    label: Výrobky
+    label_singular: Výrobek
+    folder: /src/content/products
+    create: true
+    slug: '{{title_cs}}'
+    sortable_fields: [order, title_cs]
+    summary: '{{title_cs}}'
+    fields:
+      - { label: 'Název (CS)', name: title_cs, widget: string }
+      - { label: 'Název (EN)', name: title_en, widget: string, required: false }
+      - { label: 'Název (DE)', name: title_de, widget: string, required: false }
+      - { label: 'Název (RU)', name: title_ru, widget: string, required: false }
+
+      - label: 'Kategorie'
+        name: category
+        widget: select
+        options:
+          - { label: 'Přívěsky', value: pendants }
+          - { label: 'Figurky', value: figurines }
+          - { label: 'Náušnice a prsteny', value: earrings_rings }
+
+      - label: 'Kámen'
+        name: stone
+        widget: select
+        required: false
+        options:
+          - { label: 'Nefrit', value: nephrite }
+          - { label: 'Jadeit', value: jadeite }
+
+      - { label: 'Rozměr', name: dimensions, widget: string, required: false, hint: 'např. 45 × 25 mm' }
+      - { label: 'Cena od (Kč)', name: price_from_czk, widget: number, required: false, value_type: int, min: 0 }
+
+      - label: 'Fotky'
+        name: images
+        widget: list
+        hint: 'První fotka se použije jako hlavní.'
+        field: { label: 'Fotka', name: image, widget: image }
+
+      - { label: 'Zveřejnit', name: published, widget: boolean, default: true }
+      - { label: 'Pořadí', name: order, widget: number, default: 0, value_type: int, hint: 'Nižší číslo = dříve v galerii.' }
+
+      - { label: 'Popis (CS)', name: body, widget: markdown, required: false }
