@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: TVUJ-GITHUB/nefritart
+  repo: nefritart/nefritart
   branch: main
   # TODO (Fáze 5.5): nahradit URL nasazeného OAuth Workeru, BEZ /callback na konci
-  base_url: https://DOPLNIT-URL-WORKERU.workers.dev
+  base_url: https://sveltia-cms-auth.radekbenes.workers.dev
 
 media_folder: /public/images/products
 public_folder: /images/products
