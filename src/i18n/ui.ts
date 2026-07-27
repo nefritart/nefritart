@@ -14,6 +14,31 @@ export function path(lang: Lang, to = ''): string {
   return to ? `${base}${to}` : base;
 }
 
+/**
+ * Orientační kurz pro přepočet cen do eur.
+ * ZMĚNA KURZU: uprav jen tohle číslo, projeví se všude.
+ * Kolik korun je jedno euro.
+ */
+export const eurRate = 25;
+
+/** Zápis ceny podle jazyka. Česky v korunách, jinde orientačně v eurech. */
+export function formatPrice(czk: number, lang: Lang): string {
+  if (lang === 'cs') {
+    return `${czk.toLocaleString('cs-CZ')} Kč`;
+  }
+
+  // zaokrouhlujeme na celé pětieuro, ať cena nevypadá falešně přesně
+  const eur = Math.max(5, Math.round(czk / eurRate / 5) * 5);
+
+  const locale = { en: 'en-IE', de: 'de-DE', ru: 'ru-RU' }[lang] ?? 'en-IE';
+
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+  }).format(eur);
+}
+
 export const ui = {
   cs: {
     htmlLang: 'cs',
@@ -93,6 +118,7 @@ export const ui = {
       },
       stones: { nephrite: 'Nefrit', jadeite: 'Jadeit' },
       priceFrom: 'od',
+      priceNote: '',
     },
     about: {
       eyebrow: 'Materiál',
@@ -223,6 +249,7 @@ export const ui = {
       },
       stones: { nephrite: 'Nephrite', jadeite: 'Jadeite' },
       priceFrom: 'from',
+      priceNote: 'Prices are shown in euros as an approximate conversion from Czech koruna. The final price is agreed when you order.',
     },
     about: {
       eyebrow: 'Material',
@@ -353,6 +380,7 @@ export const ui = {
       },
       stones: { nephrite: 'Nephrit', jadeite: 'Jadeit' },
       priceFrom: 'ab',
+      priceNote: 'Die Preise sind eine ungefähre Umrechnung aus tschechischen Kronen. Der endgültige Preis wird bei der Bestellung vereinbart.',
     },
     about: {
       eyebrow: 'Material',
@@ -483,6 +511,7 @@ export const ui = {
       },
       stones: { nephrite: 'Нефрит', jadeite: 'Жадеит' },
       priceFrom: 'от',
+      priceNote: 'Цены указаны в евро как приблизительный пересчёт из чешских крон. Окончательная цена согласуется при заказе.',
     },
     about: {
       eyebrow: 'Материал',

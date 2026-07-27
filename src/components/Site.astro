@@ -1,7 +1,7 @@
 ---
 import '@fontsource-variable/cormorant-garamond';
 import { getCollection } from 'astro:content';
-import { ui, languages, contact, path, type Lang } from '../i18n/ui';
+import { ui, languages, contact, path, formatPrice, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
@@ -191,7 +191,7 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
                   </p>
                   {p.data.price_from_czk && (
                     <p class="price">
-                      {t.gallery.priceFrom} {p.data.price_from_czk.toLocaleString('cs-CZ')} Kč
+                      {t.gallery.priceFrom} {formatPrice(p.data.price_from_czk, lang)}
                     </p>
                   )}
                 </div>
@@ -199,6 +199,8 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
             ))
           }
         </ul>
+
+        {t.gallery.priceNote && <p class="price-disclaimer">{t.gallery.priceNote}</p>}
       </section>
 
       <!-- O NEFRITU -->
@@ -872,6 +874,15 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
 
       .empty {
         color: var(--paper-faint);
+      }
+
+      .price-disclaimer {
+        margin: 2.5rem 0 0;
+        font-size: 0.88rem;
+        color: var(--paper-faint);
+        max-width: 44rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--line);
       }
 
       /* ---------- znaky pravosti ---------- */
