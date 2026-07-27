@@ -22,8 +22,8 @@ function title(data: Record<string, any>): string {
 const HERO = '/images/products/img-6664.jpg';
 // O nefritu: surový kámen prosvícený baterkou, ukazuje translucenci.
 const STONE = '/images/products/fcbd3c18-1085-4b5f-8d54-ca50f58259aa.jpg';
-// Příběh: portrét autora.
-const PORTRAIT = '/images/products/img-3149.jpg';
+// Příběh: portrét autora (zrcadlíme, aby se díval do textu; převádíme do černobílé).
+const PORTRAIT = '/images/products/img-6969.jpg';
 
 const categories = ['pendants', 'figurines', 'earrings_rings'] as const;
 const usedCategories = categories.filter((c) => products.some((p) => p.data.category === c));
@@ -446,15 +446,17 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
         height: 100%;
         object-fit: cover;
         object-position: center 48%;
+        /* kámen má na webu svítit — vracíme mu sytost a kresbu */
+        filter: saturate(1.18) contrast(1.12);
       }
 
       .hero-veil {
         position: absolute;
         inset: 0;
+        /* Jen tolik, aby text držel čitelnost — kámen necháme svítit. */
         background:
-          linear-gradient(to top, var(--ink) 4%, rgba(11, 14, 13, 0.82) 38%, rgba(11, 14, 13, 0.5) 100%),
-          linear-gradient(to right, rgba(11, 14, 13, 0.75) 0%, transparent 55%),
-          radial-gradient(ellipse at 62% 42%, transparent 22%, rgba(11, 14, 13, 0.65) 100%);
+          linear-gradient(to top, var(--ink) 0%, rgba(11, 14, 13, 0.6) 22%, rgba(11, 14, 13, 0.12) 55%, transparent 80%),
+          linear-gradient(to right, rgba(11, 14, 13, 0.55) 0%, rgba(11, 14, 13, 0.1) 38%, transparent 60%);
       }
 
       .hero-body {
@@ -649,7 +651,9 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
       }
 
       .portrait img {
-        filter: saturate(0.88) contrast(1.04);
+        /* zrcadlení: v profilu se dívá doprava, otočením hledí do textu */
+        transform: scaleX(-1);
+        filter: grayscale(1) contrast(0.94) brightness(1.06);
       }
 
       .portrait figcaption {
