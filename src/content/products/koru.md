@@ -5,12 +5,11 @@ title_de: "Koru-Anhänger"
 title_ru: "Подвеска Кору"
 category: "pendants"
 stone: "nephrite"
-dimensions: "45 × 25 mm"
 price_from_czk: 5000
 images:
-  - "/images/products/ukazka-koru.jpg"
+  - "/images/products/img-7002.jpg"
 published: true
 order: 10
 ---
 
-Ručně broušený přívěsek ze zeleného nefritu. Spirála koru symbolizuje nový začátek, růst a harmonii.
+Spirála mladé kapradiny — symbol nového začátku, růstu a harmonie.
