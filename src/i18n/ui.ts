@@ -45,7 +45,7 @@ export const ui = {
       ],
       quote: 'Jsem nefritu plně oddán a věřím, že si ho zamilujete i vy.',
       signature: 'Radek Beneš',
-      workshopAlt: 'Ručně broušené nefritové čepele',
+      portraitAlt: 'Radek Beneš, řezbář nefritu',
     },
     symbols: {
       eyebrow: 'Nový Zéland',
@@ -175,7 +175,7 @@ export const ui = {
       ],
       quote: 'I am wholly devoted to nephrite, and I believe you will come to love it too.',
       signature: 'Radek Beneš',
-      workshopAlt: 'Hand-ground nephrite blades',
+      portraitAlt: 'Radek Beneš, nephrite carver',
     },
     symbols: {
       eyebrow: 'New Zealand',
@@ -305,7 +305,7 @@ export const ui = {
       ],
       quote: 'Ich bin dem Nephrit vollkommen ergeben und glaube, dass auch Sie ihn lieben werden.',
       signature: 'Radek Beneš',
-      workshopAlt: 'Handgeschliffene Nephritklingen',
+      portraitAlt: 'Radek Beneš, Nephrit-Schnitzer',
     },
     symbols: {
       eyebrow: 'Neuseeland',
@@ -435,7 +435,7 @@ export const ui = {
       ],
       quote: 'Я полностью предан нефриту и верю, что вы тоже его полюбите.',
       signature: 'Radek Beneš',
-      workshopAlt: 'Нефритовые лезвия ручной шлифовки',
+      portraitAlt: 'Радек Бенеш, резчик по нефриту',
     },
     symbols: {
       eyebrow: 'Новая Зеландия',

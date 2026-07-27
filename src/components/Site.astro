@@ -18,9 +18,12 @@ function title(data: Record<string, any>): string {
   return data[`title_${lang}`] || data.title_cs;
 }
 
-const HERO = '/images/products/img-2537.jpg';
-const STONE = '/images/products/img-2037.jpg';
-const CRAFT = '/images/products/img-5092.jpg';
+// Hero: zelená nefritová čepel proti lesnímu světlu — jednoznačně kámen, bez rušivých prstů.
+const HERO = '/images/products/img-5676.jpg';
+// O nefritu: surový kámen prosvícený baterkou, ukazuje translucenci.
+const STONE = '/images/products/fcbd3c18-1085-4b5f-8d54-ca50f58259aa.jpg';
+// Příběh: portrét autora.
+const PORTRAIT = '/images/products/img-3149.jpg';
 
 const categories = ['pendants', 'figurines', 'earrings_rings'] as const;
 const usedCategories = categories.filter((c) => products.some((p) => p.data.category === c));
@@ -98,8 +101,9 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
           <blockquote class="pull">{t.story.quote}</blockquote>
           <p class="signature">{t.story.signature}</p>
         </div>
-        <figure class="split-media sticky">
-          <img src={CRAFT} alt={t.story.workshopAlt} loading="lazy" />
+        <figure class="split-media sticky portrait">
+          <img src={PORTRAIT} alt={t.story.portraitAlt} loading="lazy" />
+          <figcaption>{t.story.signature}</figcaption>
         </figure>
       </section>
 
@@ -441,15 +445,17 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center;
+        /* fotky jsou na výšku — držíme kámen v záběru i po oříznutí na šířku */
+        object-position: 60% 42%;
       }
 
       .hero-veil {
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(to top, var(--ink) 2%, rgba(11, 14, 13, 0.55) 45%, rgba(11, 14, 13, 0.35) 100%),
-          radial-gradient(ellipse at 70% 40%, transparent 30%, rgba(11, 14, 13, 0.6) 100%);
+          linear-gradient(to top, var(--ink) 4%, rgba(11, 14, 13, 0.82) 38%, rgba(11, 14, 13, 0.5) 100%),
+          linear-gradient(to right, rgba(11, 14, 13, 0.75) 0%, transparent 55%),
+          radial-gradient(ellipse at 62% 42%, transparent 22%, rgba(11, 14, 13, 0.65) 100%);
       }
 
       .hero-body {
@@ -641,6 +647,18 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
         width: 100%;
         aspect-ratio: 4 / 5;
         object-fit: cover;
+      }
+
+      .portrait img {
+        filter: saturate(0.88) contrast(1.04);
+      }
+
+      .portrait figcaption {
+        margin-top: 0.85rem;
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--paper-faint);
       }
 
       @media (min-width: 900px) {
