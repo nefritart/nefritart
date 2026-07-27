@@ -18,8 +18,8 @@ function title(data: Record<string, any>): string {
   return data[`title_${lang}`] || data.title_cs;
 }
 
-// Hero: zelená nefritová čepel proti lesnímu světlu — jednoznačně kámen, bez rušivých prstů.
-const HERO = '/images/products/img-5676.jpg';
+// Hero: prosvícená zelená čepel na tmavém pozadí. Focená na šířku, takže se ořezává minimálně.
+const HERO = '/images/products/img-6664.jpg';
 // O nefritu: surový kámen prosvícený baterkou, ukazuje translucenci.
 const STONE = '/images/products/fcbd3c18-1085-4b5f-8d54-ca50f58259aa.jpg';
 // Příběh: portrét autora.
@@ -445,8 +445,7 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
         width: 100%;
         height: 100%;
         object-fit: cover;
-        /* fotky jsou na výšku — držíme kámen v záběru i po oříznutí na šířku */
-        object-position: 60% 42%;
+        object-position: center 48%;
       }
 
       .hero-veil {
