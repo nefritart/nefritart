@@ -18,8 +18,11 @@ function title(data: Record<string, any>): string {
   return data[`title_${lang}`] || data.title_cs;
 }
 
-// Hero: prosvícená zelená čepel na tmavém pozadí. Focená na šířku, takže se ořezává minimálně.
+// Hero na šířku: prosvícená zelená čepel na tmavém pozadí.
 const HERO = '/images/products/img-6664.jpg';
+// Hero na výšku (mobil): fotka na šířku by se ořízla na nečitelný pruh,
+// proto svislý snímek, kde je přívěsek na šňůrce vidět celý.
+const HERO_PORTRAIT = '/images/products/img-5953.jpg';
 // O nefritu: surový kámen prosvícený baterkou, ukazuje translucenci.
 const STONE = '/images/products/fcbd3c18-1085-4b5f-8d54-ca50f58259aa.jpg';
 // Příběh: portrét autora (zrcadlíme, aby se díval do textu; převádíme do černobílé).
@@ -79,7 +82,10 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
     <main id="main">
       <!-- HERO -->
       <section class="hero">
-        <img src={HERO} alt="" class="hero-img" fetchpriority="high" />
+        <picture>
+          <source media="(max-aspect-ratio: 3/4)" srcset={HERO_PORTRAIT} />
+          <img src={HERO} alt="" class="hero-img" fetchpriority="high" />
+        </picture>
         <div class="hero-veil"></div>
         <div class="hero-body">
           <p class="tagline">{t.hero.tagline}</p>
@@ -450,6 +456,14 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
         object-position: center 48%;
         /* kámen má na webu svítit — vracíme mu sytost a kresbu */
         filter: saturate(1.18) contrast(1.12);
+      }
+
+      /* Na stojatých displejích se načte svislý snímek — posuneme těžiště
+         výš, aby přívěsek nezakryl spodní text. */
+      @media (max-aspect-ratio: 3 / 4) {
+        .hero-img {
+          object-position: center 38%;
+        }
       }
 
       .hero-veil {
