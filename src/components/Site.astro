@@ -95,6 +95,10 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
             <a class="btn primary" href="#gallery">{t.hero.ctaGallery}</a>
             <a class="btn ghost" href="#story">{t.hero.ctaStory}</a>
           </div>
+
+          <ul class="badges">
+            {t.hero.badges.map((b) => <li>{b}</li>)}
+          </ul>
         </div>
       </section>
 
@@ -562,6 +566,35 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
       .btn.ghost:hover {
         border-color: var(--jade);
         color: var(--jade);
+      }
+
+      /* odznaky pod tlačítky v hero */
+      .badges {
+        list-style: none;
+        margin: 2rem 0 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+      }
+
+      .badges li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+        color: var(--paper-dim);
+        text-shadow: 0 1px 10px rgba(8, 11, 10, 0.8);
+      }
+
+      .badges li::before {
+        content: '';
+        width: 0.4rem;
+        height: 0.4rem;
+        flex: none;
+        transform: rotate(45deg);
+        background: var(--jade);
       }
 
       /* ---------- pásma ---------- */
