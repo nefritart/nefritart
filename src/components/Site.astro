@@ -56,7 +56,7 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
 
     <header id="siteHeader">
       <div class="bar">
-        <a class="brand" href={path(lang)}>Nefritart</a>
+        <a class="brand" href={path(lang)}>Nefrit Art</a>
 
         <nav class="menu" aria-label="Menu">
           <a href="#story">{t.nav.story}</a>
@@ -64,6 +64,7 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
           <a href="#gallery">{t.nav.gallery}</a>
           <a href="#about">{t.nav.about}</a>
           <a href="#genuine">{t.nav.genuine}</a>
+          <a href="#commission">{t.nav.commission}</a>
           <a href="#contact">{t.nav.contact}</a>
         </nav>
 
@@ -198,7 +199,14 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
                     {t.gallery.categories[p.data.category]}
                     {p.data.stone && <> · {t.gallery.stones[p.data.stone]}</>}
                     {p.data.dimensions && <> · {p.data.dimensions}</>}
+                    {p.data.weight_g && <> · {p.data.weight_g} {t.gallery.weightUnit}</>}
+                    {p.data.year && <> · {p.data.year}</>}
                   </p>
+                  {p.data.availability && (
+                    <p class:list={['stav', p.data.availability]}>
+                      {t.gallery.availability[p.data.availability]}
+                    </p>
+                  )}
                   {p.data.price_from_czk && (
                     <p class="price">
                       {t.gallery.priceFrom} {formatPrice(p.data.price_from_czk, lang)}
@@ -251,6 +259,66 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
           <h3>{t.genuine.careTitle}</h3>
           <p>{t.genuine.care}</p>
         </div>
+      </section>
+
+      <!-- ZAKÁZKOVÁ TVORBA -->
+      <section id="commission" class="band">
+        <div class="head">
+          <p class="eyebrow">{t.commission.eyebrow}</p>
+          <h2>{t.commission.title}</h2>
+          <p class="prose wide">{t.commission.lede}</p>
+        </div>
+
+        <form class="poptavka" id="commissionForm" novalidate>
+          <div class="row">
+            <label>
+              <span class="lbl">{t.commission.fEmail} *</span>
+              <input type="email" name="email" required autocomplete="email" />
+            </label>
+            <label>
+              <span class="lbl">{t.commission.fPhone} <em>{t.commission.fPhoneHint}</em></span>
+              <input type="tel" name="telefon" autocomplete="tel" />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              <span class="lbl">{t.commission.fKind}</span>
+              <select name="druh">
+                {t.commission.fKinds.map((k) => <option>{k}</option>)}
+              </select>
+            </label>
+            <label>
+              <span class="lbl">{t.commission.fColor}</span>
+              <select name="barva">
+                {t.commission.fColors.map((c) => <option>{c}</option>)}
+              </select>
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              <span class="lbl">{t.commission.fMotif} <em>{t.commission.fMotifHint}</em></span>
+              <input type="text" name="motiv" />
+            </label>
+            <label>
+              <span class="lbl">{t.commission.fSize} <em>{t.commission.fSizeHint}</em></span>
+              <input type="text" name="velikost" />
+            </label>
+          </div>
+
+          <label class="full">
+            <span class="lbl">{t.commission.fNote}</span>
+            <textarea name="poznamka" rows="4"></textarea>
+          </label>
+
+          <div class="send">
+            <button type="submit" class="btn primary">{t.commission.submit}</button>
+            <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+          </div>
+
+          <p class="gdpr">{t.commission.gdpr}</p>
+        </form>
       </section>
 
       <!-- KONTAKT -->
@@ -919,6 +987,23 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
         font-variant-numeric: tabular-nums;
       }
 
+      /* stav dostupnosti — barvou i slovem, ne jen barvou */
+      .stav {
+        display: inline-block;
+        margin: 0.5rem 0 0;
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 650;
+        padding: 0.18rem 0.55rem;
+        border: 1px solid currentColor;
+        border-radius: 2px;
+      }
+
+      .stav.available { color: var(--jade); }
+      .stav.reserved { color: var(--amber); }
+      .stav.sold { color: var(--paper-faint); }
+
       .empty {
         color: var(--paper-faint);
       }
@@ -1000,6 +1085,106 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
         margin: 0;
         color: var(--paper-dim);
         font-size: 1rem;
+      }
+
+      /* ---------- zakázkový formulář ---------- */
+
+      .poptavka {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 52rem;
+      }
+
+      .row {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 720px) {
+        .row {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .poptavka label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .lbl {
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--paper-dim);
+        font-weight: 600;
+      }
+
+      .lbl em {
+        font-style: normal;
+        text-transform: none;
+        letter-spacing: 0.02em;
+        color: var(--paper-faint);
+        font-weight: 400;
+        margin-left: 0.4rem;
+      }
+
+      .poptavka input,
+      .poptavka select,
+      .poptavka textarea {
+        font-family: inherit;
+        font-size: 1rem;
+        color: var(--paper);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        padding: 0.75rem 0.85rem;
+        width: 100%;
+      }
+
+      .poptavka textarea {
+        resize: vertical;
+        min-height: 6rem;
+      }
+
+      .poptavka :is(input, select, textarea):focus-visible {
+        outline: 2px solid var(--jade);
+        outline-offset: 1px;
+        border-color: var(--jade);
+      }
+
+      .poptavka input:user-invalid {
+        border-color: var(--amber);
+      }
+
+      .send {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .poptavka button {
+        font-family: inherit;
+        cursor: pointer;
+        border: 0;
+      }
+
+      .form-msg {
+        margin: 0;
+        font-size: 0.92rem;
+        color: var(--paper-dim);
+      }
+
+      .form-msg.ok { color: var(--jade); }
+      .form-msg.err { color: var(--amber); }
+
+      .gdpr {
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--paper-faint);
+        max-width: 44rem;
       }
 
       /* ---------- kontakt ---------- */
@@ -1185,7 +1370,71 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
       }
     </style>
 
-    <script>
+    <script
+      define:vars={{
+        accessKey: contact.formAccessKey,
+        mailTo: contact.email,
+        okMsg: t.commission.ok,
+        errMsg: t.commission.err,
+        sendingMsg: t.commission.sending,
+        submitLabel: t.commission.submit,
+        subject: `Poptávka z webu — ${t.commission.eyebrow}`,
+      }}
+    >
+      // Odeslání poptávky. Když je nastavený klíč služby, odešle se na pozadí.
+      // Když ne, poskládá se e-mail a otevře poštovní program — funguje vždy.
+      const form = document.getElementById('commissionForm');
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const msg = document.getElementById('formMsg');
+        const btn = form.querySelector('button[type="submit"]');
+        if (!msg || !btn) return;
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const data = new FormData(form);
+
+        if (!accessKey) {
+          // náhradní cesta: otevřeme poštovní program s předvyplněnou zprávou
+          const lines = [];
+          for (const [k, v] of data.entries()) {
+            if (String(v).trim()) lines.push(`${k}: ${v}`);
+          }
+          const href =
+            `mailto:${mailTo}?subject=${encodeURIComponent(subject)}` +
+            `&body=${encodeURIComponent(lines.join('\n'))}`;
+          window.location.href = href;
+          return;
+        }
+
+        msg.textContent = sendingMsg;
+        msg.className = 'form-msg';
+        btn.disabled = true;
+
+        try {
+          data.append('access_key', accessKey);
+          data.append('subject', subject);
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: data,
+          });
+          if (!res.ok) throw new Error('bad response');
+          form.reset();
+          msg.textContent = okMsg;
+          msg.className = 'form-msg ok';
+        } catch {
+          msg.textContent = errMsg;
+          msg.className = 'form-msg err';
+        } finally {
+          btn.disabled = false;
+          btn.textContent = submitLabel;
+        }
+      });
+
       // hlavička po odscrollování
       const header = document.getElementById('siteHeader');
       const onScroll = () => header?.classList.toggle('stuck', window.scrollY > 40);

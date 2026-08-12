@@ -11,6 +11,10 @@ const products = defineCollection({
     category: z.enum(['pendants', 'figurines', 'earrings_rings']),
     stone: z.enum(['nephrite', 'jadeite']).optional(),
     dimensions: z.string().optional(),
+    weight_g: z.number().optional(),
+    year: z.number().optional(),
+    // stav dostupnosti — když se nevyplní, na webu se nic neukáže
+    availability: z.enum(['available', 'reserved', 'sold']).optional(),
     price_from_czk: z.number().optional(),
     images: z.array(z.string()).default([]),
     published: z.boolean().default(true),

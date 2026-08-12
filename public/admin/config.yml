@@ -42,6 +42,19 @@ collections:
           - { label: 'Jadeit', value: jadeite }
 
       - { label: 'Rozměr', name: dimensions, widget: string, required: false, hint: 'např. 45 × 25 mm' }
+      - { label: 'Hmotnost (g)', name: weight_g, widget: number, required: false, value_type: int, min: 0, hint: 'Nepovinné. Jen číslo, třeba 24' }
+      - { label: 'Rok vzniku', name: year, widget: number, required: false, value_type: int, min: 1980, max: 2100, hint: 'Nepovinné. Třeba 2026' }
+
+      - label: 'Dostupnost'
+        name: availability
+        widget: select
+        required: false
+        hint: 'Nepovinné. Když nevyplníš, na webu se nic neukáže.'
+        options:
+          - { label: 'K dispozici', value: available }
+          - { label: 'Rezervováno', value: reserved }
+          - { label: 'Prodáno', value: sold }
+
       - { label: 'Cena od (Kč)', name: price_from_czk, widget: number, required: false, value_type: int, min: 0 }
 
       - label: 'Fotky'
