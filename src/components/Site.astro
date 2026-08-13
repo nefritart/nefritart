@@ -269,7 +269,18 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
           <p class="prose wide">{t.commission.lede}</p>
         </div>
 
-        <form class="poptavka" id="commissionForm" novalidate>
+        <form
+          class="poptavka"
+          id="commissionForm"
+          novalidate
+          data-key={contact.formAccessKey}
+          data-mailto={contact.email}
+          data-subject={`Poptávka z webu — ${t.commission.eyebrow}`}
+          data-ok={t.commission.ok}
+          data-err={t.commission.err}
+          data-sending={t.commission.sending}
+          data-submit={t.commission.submit}
+        >
           <div class="row">
             <label>
               <span class="lbl">{t.commission.fEmail} *</span>
@@ -1370,25 +1381,15 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
       }
     </style>
 
-    <script
-      define:vars={{
-        accessKey: contact.formAccessKey,
-        mailTo: contact.email,
-        okMsg: t.commission.ok,
-        errMsg: t.commission.err,
-        sendingMsg: t.commission.sending,
-        submitLabel: t.commission.submit,
-        subject: `Poptávka z webu — ${t.commission.eyebrow}`,
-      }}
-    >
-      // Odeslání poptávky. Když je nastavený klíč služby, odešle se na pozadí.
-      // Když ne, poskládá se e-mail a otevře poštovní program — funguje vždy.
-      const form = document.getElementById('commissionForm');
+    <script>
+      // Odeslání poptávky. Texty a nastavení bereme z atributů formuláře,
+      // aby skript zůstal běžným modulem (jinak se nezpracuje TypeScript).
+      const form = document.getElementById('commissionForm') as HTMLFormElement | null;
 
       form?.addEventListener('submit', async (e) => {
         e.preventDefault();
         const msg = document.getElementById('formMsg');
-        const btn = form.querySelector('button[type="submit"]');
+        const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
         if (!msg || !btn) return;
 
         if (!form.checkValidity()) {
@@ -1396,42 +1397,42 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
           return;
         }
 
+        const cfg = form.dataset;
         const data = new FormData(form);
 
-        if (!accessKey) {
+        if (!cfg.key) {
           // náhradní cesta: otevřeme poštovní program s předvyplněnou zprávou
-          const lines = [];
+          const lines: string[] = [];
           for (const [k, v] of data.entries()) {
             if (String(v).trim()) lines.push(`${k}: ${v}`);
           }
-          const href =
-            `mailto:${mailTo}?subject=${encodeURIComponent(subject)}` +
+          window.location.href =
+            `mailto:${cfg.mailto}?subject=${encodeURIComponent(cfg.subject ?? '')}` +
             `&body=${encodeURIComponent(lines.join('\n'))}`;
-          window.location.href = href;
           return;
         }
 
-        msg.textContent = sendingMsg;
+        msg.textContent = cfg.sending ?? '';
         msg.className = 'form-msg';
         btn.disabled = true;
 
         try {
-          data.append('access_key', accessKey);
-          data.append('subject', subject);
+          data.append('access_key', cfg.key);
+          data.append('subject', cfg.subject ?? '');
           const res = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             body: data,
           });
           if (!res.ok) throw new Error('bad response');
           form.reset();
-          msg.textContent = okMsg;
+          msg.textContent = cfg.ok ?? '';
           msg.className = 'form-msg ok';
         } catch {
-          msg.textContent = errMsg;
+          msg.textContent = cfg.err ?? '';
           msg.className = 'form-msg err';
         } finally {
           btn.disabled = false;
-          btn.textContent = submitLabel;
+          btn.textContent = cfg.submit ?? '';
         }
       });
 
