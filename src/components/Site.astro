@@ -57,8 +57,7 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
     <header id="siteHeader">
       <div class="bar">
         <a class="brand" href={path(lang)} aria-label="Nefrit Art">
-          <img src="/logo-mark.svg" alt="" class="mark" width="26" height="34" />
-          <span>Nefrit Art</span>
+          <span class="brand-logo"></span>
         </a>
 
         <nav class="menu" aria-label="Menu">
@@ -363,7 +362,7 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
     </main>
 
     <footer>
-      <img src="/logo.svg" alt="Nefrit Art" class="foot-logo" width="104" height="121" loading="lazy" />
+      <span class="foot-logo" role="img" aria-label="Nefrit Art"></span>
 
       <nav class="foot-nav" aria-label="Menu">
         <a href="#story">{t.nav.story}</a>
@@ -460,37 +459,36 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
       }
 
       .brand {
-        font-family: var(--display);
-        font-size: 1.6rem;
-        font-weight: 600;
-        letter-spacing: 0.06em;
         color: var(--paper);
         text-decoration: none;
         flex: none;
         display: flex;
         align-items: center;
-        gap: 0.6rem;
       }
 
-      /* Značka je jednobarevná SVG — maskou ji obarvíme podle textu,
-         takže se sama přizpůsobí, kdykoli změníme barvu značky. */
-      .mark {
-        width: auto;
-        /* pod ~42 px se vnitřek spirály slévá — menší už nedávat */
-        height: 2.2rem;
+      /* Logo je jednobarevná kresba. Vykreslíme ho jako masku nad plochou
+         v barvě textu — prázdným prvkem, ne obrázkem: <img> by si vedle
+         pozadí vykreslil i vlastní černé křivky. */
+      .brand-logo {
+        display: block;
+        height: var(--logo-h, 5.2rem);
+        /* poměr stran logotypu 362,1 : 418,7 */
+        width: calc(var(--logo-h, 5.2rem) * 0.865);
         background: currentColor;
-        -webkit-mask: url('/logo-mark.svg') no-repeat center / contain;
-        mask: url('/logo-mark.svg') no-repeat center / contain;
+        -webkit-mask: url('/logo.svg') no-repeat center / contain;
+        mask: url('/logo.svg') no-repeat center / contain;
+        transition: height 0.35s ease, width 0.35s ease;
       }
 
-      @media (max-width: 420px) {
-        .brand span {
-          display: none;
-        }
+      /* Po odscrollování jen mírně zmenšíme. Níž už se nápis pod značkou
+         nedá přečíst, takže radši snesme o něco vyšší lištu. */
+      header.stuck .brand-logo {
+        --logo-h: 3.9rem;
+      }
 
-        .mark {
-          height: 2.6rem;
-        }
+      @media (max-width: 900px) {
+        .brand-logo { --logo-h: 4.4rem; }
+        header.stuck .brand-logo { --logo-h: 3.3rem; }
       }
 
       .menu {
@@ -1301,8 +1299,9 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
       }
 
       .foot-logo {
+        display: block;
         height: 7rem;
-        width: auto;
+        width: calc(7rem * 0.865);
         margin: 0 auto 2rem;
         background: var(--paper-dim);
         -webkit-mask: url('/logo.svg') no-repeat center / contain;
