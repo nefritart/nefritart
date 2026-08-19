@@ -44,6 +44,7 @@ export const ui = {
     htmlLang: 'cs',
     nav: {
       story: 'O mě',
+      process: 'Proces',
       gallery: 'Galerie',
       symbols: 'Maorská symbolika',
       about: 'Nefrit',
@@ -106,6 +107,22 @@ export const ui = {
           text: 'Věří se, že nefrit postupem let jemně mění svůj odstín a strukturu podle toho, jaký život jeho nositel vede a jakou energii vyzařuje.',
         },
       ],
+    },
+    process: {
+      eyebrow: 'Řemeslo',
+      title: 'Od surového bloku k hotovému kusu',
+      lede: 'Nefrit je tak houževnatý, že na něj platí jedině diamantové nástroje. Postup je pomalý a nedá se uspěchat — každý krok musí doběhnout, než začne další.',
+      steps: [
+        { title: 'Výběr kamene', text: 'Všechno začíná surovým blokem. Teprve kresba, barva a průsvitnost rozhodnou, co z něj vůbec může vzniknout.' },
+        { title: 'Řezání plátků', text: 'Diamantová pila krájí blok na plátky. Uvnitř se často ukáže kresba, kterou zvenčí nikdo netušil.' },
+        { title: 'Rozkreslení a hrubý ořez', text: 'Na plátek se tužkou rozkreslí tvar a odřeže se všechno, co k němu nepatří.' },
+        { title: 'Pilování', text: 'Ruční pilování dává kusu obrys. Tady se rozhoduje, jestli bude tvar žít, nebo zůstane tuhý.' },
+        { title: 'Tvarování', text: 'Hrany se zaoblují, plochy vyrovnávají. Kámen postupně přestává být plátkem a začíná být předmětem.' },
+        { title: 'Broušení', text: 'Mikrobruska s diamantovými nástavci, postupně od hrubších k jemnějším. Nejzdlouhavější a fyzicky nejnáročnější část.' },
+        { title: 'Leštění a hotové dílo', text: 'Leštěním se probudí hloubka kamene. Teprve teď je vidět, co v něm celou dobu bylo.' },
+      ],
+      atelierTitle: 'Ateliér',
+      atelierText: 'Zahradní dílna, diamantová pila, brusky a mikromotor s nástavci. Žádná velkovýroba — jedny ruce a spousta času.',
     },
     gallery: {
       eyebrow: 'Tvorba',
@@ -201,6 +218,7 @@ export const ui = {
     htmlLang: 'en',
     nav: {
       story: 'About me',
+      process: 'Process',
       gallery: 'Gallery',
       symbols: 'Māori symbols',
       about: 'Nephrite',
@@ -263,6 +281,22 @@ export const ui = {
           text: 'It is believed that over the years nephrite subtly shifts its shade and texture according to the life its wearer leads and the energy they carry.',
         },
       ],
+    },
+    process: {
+      eyebrow: 'The craft',
+      title: 'From a raw block to a finished piece',
+      lede: 'Nephrite is so tough that only diamond tools will touch it. The work is slow and cannot be hurried — every stage has to finish before the next one starts.',
+      steps: [
+        { title: 'Choosing the stone', text: 'It all begins with a raw block. Its figure, colour and translucency decide what can come out of it at all.' },
+        { title: 'Cutting the slices', text: 'A diamond saw cuts the block into slices. Inside, a pattern often appears that nobody could have guessed from the outside.' },
+        { title: 'Drawing and rough cutting', text: 'The shape is drawn onto the slice in pencil, and everything that does not belong to it is cut away.' },
+        { title: 'Filing', text: 'Hand filing gives the piece its outline. This is where it is decided whether the form will live or stay stiff.' },
+        { title: 'Shaping', text: 'Edges are rounded, surfaces evened out. The stone gradually stops being a slice and starts being an object.' },
+        { title: 'Grinding', text: 'A micro-grinder with diamond bits, working from coarse to fine. The longest and physically hardest part of the work.' },
+        { title: 'Polishing and the finished work', text: 'Polishing wakes the depth of the stone. Only now can you see what was in it all along.' },
+      ],
+      atelierTitle: 'The workshop',
+      atelierText: 'A garden workshop, a diamond saw, grinders and a micromotor with bits. No production line — one pair of hands and a great deal of time.',
     },
     gallery: {
       eyebrow: 'Work',
@@ -358,6 +392,7 @@ export const ui = {
     htmlLang: 'de',
     nav: {
       story: 'Über mich',
+      process: 'Prozess',
       gallery: 'Galerie',
       symbols: 'Māori-Symbole',
       about: 'Nephrit',
@@ -420,6 +455,22 @@ export const ui = {
           text: 'Man glaubt, dass Nephrit im Lauf der Jahre Farbton und Struktur fein verändert — je nachdem, welches Leben sein Träger führt und welche Energie er ausstrahlt.',
         },
       ],
+    },
+    process: {
+      eyebrow: 'Das Handwerk',
+      title: 'Vom Rohblock zum fertigen Stück',
+      lede: 'Nephrit ist so zäh, dass ihm nur Diamantwerkzeug etwas anhaben kann. Der Weg ist langsam und lässt sich nicht beschleunigen — jeder Schritt muss zu Ende gehen, bevor der nächste beginnt.',
+      steps: [
+        { title: 'Auswahl des Steins', text: 'Alles beginnt mit einem Rohblock. Erst Zeichnung, Farbe und Transluzenz entscheiden, was überhaupt daraus entstehen kann.' },
+        { title: 'Schneiden der Platten', text: 'Eine Diamantsäge zerteilt den Block in Platten. Im Inneren zeigt sich oft eine Zeichnung, die von außen niemand ahnen konnte.' },
+        { title: 'Anzeichnen und Grobschnitt', text: 'Die Form wird mit Bleistift auf die Platte gezeichnet, und alles, was nicht dazugehört, wird weggeschnitten.' },
+        { title: 'Feilen', text: 'Das Feilen von Hand gibt dem Stück seine Kontur. Hier entscheidet sich, ob die Form lebt oder starr bleibt.' },
+        { title: 'Formgebung', text: 'Kanten werden gerundet, Flächen ausgeglichen. Der Stein hört allmählich auf, eine Platte zu sein, und wird zum Gegenstand.' },
+        { title: 'Schleifen', text: 'Mikroschleifer mit Diamantaufsätzen, von grob nach fein. Der langwierigste und körperlich härteste Teil.' },
+        { title: 'Politur und fertiges Werk', text: 'Die Politur weckt die Tiefe des Steins. Erst jetzt sieht man, was die ganze Zeit in ihm steckte.' },
+      ],
+      atelierTitle: 'Das Atelier',
+      atelierText: 'Eine Gartenwerkstatt, eine Diamantsäge, Schleifmaschinen und ein Mikromotor mit Aufsätzen. Keine Serienfertigung — ein Paar Hände und sehr viel Zeit.',
     },
     gallery: {
       eyebrow: 'Arbeiten',
@@ -515,6 +566,7 @@ export const ui = {
     htmlLang: 'ru',
     nav: {
       story: 'Обо мне',
+      process: 'Процесс',
       gallery: 'Галерея',
       symbols: 'Символы маори',
       about: 'Нефрит',
@@ -577,6 +629,22 @@ export const ui = {
           text: 'Считается, что с годами нефрит слегка меняет оттенок и структуру — в зависимости от того, какую жизнь ведёт его владелец и какую энергию излучает.',
         },
       ],
+    },
+    process: {
+      eyebrow: 'Ремесло',
+      title: 'От необработанного блока до готового изделия',
+      lede: 'Нефрит настолько вязкий, что с ним справляется только алмазный инструмент. Работа идёт медленно, и торопить её нельзя — каждый этап должен завершиться прежде, чем начнётся следующий.',
+      steps: [
+        { title: 'Выбор камня', text: 'Всё начинается с необработанного блока. Именно рисунок, цвет и просвечиваемость решают, что вообще может из него получиться.' },
+        { title: 'Нарезка пластин', text: 'Алмазная пила режет блок на пластины. Внутри часто открывается рисунок, о котором снаружи никто не догадывался.' },
+        { title: 'Разметка и грубый рез', text: 'На пластину карандашом наносится форма, и всё лишнее срезается.' },
+        { title: 'Опиливание', text: 'Ручное опиливание задаёт изделию контур. Здесь решается, будет форма живой или останется скованной.' },
+        { title: 'Формообразование', text: 'Края скругляются, поверхности выравниваются. Камень перестаёт быть пластиной и становится предметом.' },
+        { title: 'Шлифовка', text: 'Микрошлифовальная машина с алмазными насадками, от грубых к тонким. Самая долгая и физически трудная часть.' },
+        { title: 'Полировка и готовая работа', text: 'Полировка пробуждает глубину камня. Только теперь видно то, что было в нём всё это время.' },
+      ],
+      atelierTitle: 'Мастерская',
+      atelierText: 'Садовая мастерская, алмазная пила, шлифовальные станки и микромотор с насадками. Никакого производства — одни руки и много времени.',
     },
     gallery: {
       eyebrow: 'Работы',
