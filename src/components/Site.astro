@@ -77,9 +77,9 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
 
         <nav class="menu" aria-label="Menu">
           <a href="#story">{t.nav.story}</a>
-          <a href="#process">{t.nav.process}</a>
           <a href="#symbols">{t.nav.symbols}</a>
           <a href="#gallery">{t.nav.gallery}</a>
+          <a href="#process">{t.nav.process}</a>
           <a href="#about">{t.nav.about}</a>
           <a href="#genuine">{t.nav.genuine}</a>
           <a href="#commission">{t.nav.commission}</a>
@@ -174,42 +174,6 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
         </div>
       </section>
 
-      <!-- PROCES -->
-      <section id="process" class="band process-band">
-        <div class="head">
-          <p class="eyebrow">{t.process.eyebrow}</p>
-          <h2>{t.process.title}</h2>
-          <p class="prose wide">{t.process.lede}</p>
-        </div>
-
-        <ol class="kroky">
-          {
-            t.process.steps.map((k, i) => (
-              <li>
-                <figure>
-                  <img src={PROCES[i]} alt={k.title} loading="lazy" />
-                </figure>
-                <div class="krok-text">
-                  <span class="krok-cislo">{String(i + 1).padStart(2, '0')}</span>
-                  <h3>{k.title}</h3>
-                  <p>{k.text}</p>
-                </div>
-              </li>
-            ))
-          }
-        </ol>
-
-        <div class="atelier">
-          <div class="atelier-text">
-            <h3>{t.process.atelierTitle}</h3>
-            <p>{t.process.atelierText}</p>
-          </div>
-          <div class="atelier-fotky">
-            {ATELIER.map((f) => <img src={f} alt={t.process.atelierTitle} loading="lazy" />)}
-          </div>
-        </div>
-      </section>
-
       <!-- GALERIE -->
       <section id="gallery" class="band">
         <div class="head">
@@ -273,6 +237,42 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
         </ul>
 
         {t.gallery.priceNote && <p class="price-disclaimer">{t.gallery.priceNote}</p>}
+      </section>
+
+      <!-- PROCES -->
+      <section id="process" class="band process-band">
+        <div class="head">
+          <p class="eyebrow">{t.process.eyebrow}</p>
+          <h2>{t.process.title}</h2>
+          <p class="prose wide">{t.process.lede}</p>
+        </div>
+
+        <ol class="kroky">
+          {
+            t.process.steps.map((k, i) => (
+              <li>
+                <figure>
+                  <img src={PROCES[i]} alt={k.title} loading="lazy" />
+                </figure>
+                <div class="krok-text">
+                  <span class="krok-cislo">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{k.title}</h3>
+                  <p>{k.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="atelier">
+          <div class="atelier-text">
+            <h3>{t.process.atelierTitle}</h3>
+            <p>{t.process.atelierText}</p>
+          </div>
+          <div class="atelier-fotky">
+            {ATELIER.map((f) => <img src={f} alt={t.process.atelierTitle} loading="lazy" />)}
+          </div>
+        </div>
       </section>
 
       <!-- O NEFRITU -->
@@ -420,8 +420,10 @@ const usedCategories = categories.filter((c) => products.some((p) => p.data.cate
         <a href="#story">{t.nav.story}</a>
         <a href="#symbols">{t.nav.symbols}</a>
         <a href="#gallery">{t.nav.gallery}</a>
+        <a href="#process">{t.nav.process}</a>
         <a href="#about">{t.nav.about}</a>
         <a href="#genuine">{t.nav.genuine}</a>
+        <a href="#commission">{t.nav.commission}</a>
         <a href="#contact">{t.nav.contact}</a>
       </nav>
       <p>{t.footer.rights}</p>
