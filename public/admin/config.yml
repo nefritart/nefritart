@@ -2,11 +2,24 @@ backend:
   name: github
   repo: nefritart/nefritart
   branch: main
-  # TODO (Fáze 5.5): nahradit URL nasazeného OAuth Workeru, BEZ /callback na konci
   base_url: https://sveltia-cms-auth.radekbenes.workers.dev
 
 media_folder: /public/images/products
 public_folder: /images/products
+
+# Zmensovani fotek primo v prohlizeci pri nahravani.
+# Bez tohohle by se do repozitare ukladaly originaly z mobilu
+# (klidne 4 MB kus). Neni zapnute samo od sebe.
+media_libraries:
+  all:
+    transformations:
+      raster_image:
+        format: webp
+        quality: 85
+        width: 1600
+        height: 1600
+      svg:
+        optimize: true
 
 locale: cs
 
