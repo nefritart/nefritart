@@ -739,7 +739,7 @@ export const ui = {
 
 /** Kontaktní údaje — stejné pro všechny jazyky. */
 export const contact = {
-  email: 'nefritart@seznam.cz',
+  email: 'info@nefritart.eu',
   phone: '+420 773 922 910',
   phoneHref: '+420773922910',
   facebook: 'https://www.facebook.com/Nefritart',
